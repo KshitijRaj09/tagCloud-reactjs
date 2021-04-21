@@ -7,7 +7,6 @@ import "./App.css";
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(1),
-    minWidth: "400px",
   },
 
   tagCloudContainer: {
@@ -15,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid",
     borderRadius: "5px",
     marginTop: "20px",
-    minWidth: "350px",
     alignItems: "center",
     maxWidth: "100%",
     wordBreak: "break-word",
@@ -49,28 +47,30 @@ export default function App() {
   };
 
   return (
-    <Container maxWidth="lg" className={classes.root}>
+    <Container maxWidth="md" className={classes.root}>
       <Typography variant="h3" color="textSecondary" align="center">
         {title}
       </Typography>
 
       <div className={display ? "showing" : "hidden"}>
-        <Typography color="textSecondary" variant="h5">
+        <Typography color="textSecondary" variant="h6">
           '{tagDetails.tag}' has count '{tagDetails.count}'
         </Typography>
       </div>
 
       <TextArea data={setDataHandler} />
-      <Container className={classes.tagCloudContainer}>
-        <TagCloud
-          minSize={20}
-          maxSize={70}
-          tags={data}
-          colorOptions={options}
-          onMouseOver={show}
-          onMouseOut={hide}
-        />
-      </Container>
+      {data.length > 0 && (
+        <Container className={classes.tagCloudContainer}>
+          <TagCloud
+            minSize={20}
+            maxSize={70}
+            tags={data}
+            colorOptions={options}
+            onMouseOver={show}
+            onMouseOut={hide}
+          />
+        </Container>
+      )}
     </Container>
   );
 }

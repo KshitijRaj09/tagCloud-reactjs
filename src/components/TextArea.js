@@ -24,7 +24,7 @@ const TextArea = ({ data }) => {
 
   const handleText = () => {
     let arrayOfWords = text
-      .replace(/[.\],[?/#!$%^&*;:{}=\-_`~()]/g, "")
+      .replace(/[.\],[?/#!$%^&*;:"{}=\-_`~()]/g, "")
       .replace(/(?:(the|a|an) +)/g, "")
       .toLowerCase()
       .split(" ");
@@ -53,13 +53,10 @@ const TextArea = ({ data }) => {
 
   const handleChange = (event) => {
     setText(event.target.value);
-    console.log(text);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(text);
-
     handleText();
   };
 
@@ -69,7 +66,7 @@ const TextArea = ({ data }) => {
   };
 
   return (
-    <Grid container style={{ minWidth: "350px" }} className={classes.root}>
+    <Grid container className={classes.root}>
       <Grid item xs={12}>
         <TextField
           value={text}
